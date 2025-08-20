@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 int main(){
 
@@ -11,6 +12,8 @@ int main(){
     float superPoder1;
     int NumeroPontoTuristico1;
     unsigned long int populacao1;
+    float soma11 = 0.0;
+    float soma21 = 0.0;
 
     //criando as variaveis para carta 2
     char estado2[3];
@@ -22,10 +25,18 @@ int main(){
     float superPoder2;
     int NumeroPontoTuristico2;
     unsigned long int populacao2;
+    float soma2_1 = 0.0;
+    float soma2_2 = 0.0;
     
-    //criando  variavel opcao
-    int opcao;
-    
+    //criando variaveis de comparacao
+    int atributo1, atributo2;
+    int resultado1, resultado2;
+    char nomeAtributo1[35];
+    char nomeAtributo2[35];
+    float valorCarta1_1 = 0;
+    float valorCarta2_1 = 0;
+    float valorCarta1_2 = 0;
+    float valorCarta2_2 = 0;
     
     //imprimindo informações na tela para o usuário preencher, carta 1
     printf("Insira os dados da carta 1:\n");
@@ -103,139 +114,164 @@ int main(){
     superPoder2 = (float)(populacao2 + area2 + pibBilhoes2 + NumeroPontoTuristico2 + pibPerCapita2 + inversoDensidade2);
     
     //impressao de interacao com o usuario
-    printf("\n\nSelecione os Atributos da carta que quer comparar\n");
+    printf("\n\n##### Bem-vindo ao jogo #####\n");
+    printf("Escolha o primeiro atributo:\n");
     printf("1. Populacao\n");
     printf("2. Area\n");
     printf("3. PIB\n");
     printf("4. Numero de Pontos Turísticos\n");
     printf("5. Densidade Populacional\n");
-    scanf("%d", &opcao);
+    
+    printf("Escolha a comparacao: ");
+    scanf("%d", &atributo1);
     
     
     //iniciando o switch
-    switch(opcao){
+    switch(atributo1){
         
-        case 1:                             //caso a entrada do usuario for 1
-            if (populacao1 > populacao2){   //comparacao do atributo populacao das cartas 1 e 2
-                
-                printf("\n\nPaises: %s e %s\n", nomePais1, nomePais2);
-                printf("Atributo: Populacao\n");
-                printf("Valores de cada: carta 1: %lu, carta 2: %lu\n", populacao1, populacao2);
-                printf("Carta 1 foi a vencedora: %s\n", nomePais1);
-                
-            } else if (populacao1 < populacao2){ //comparacao entre cartas 1 e 2 caso a carta 2 ganhe
-                
-                printf("\n\nPaises: %s e %s\n", nomePais1, nomePais2);
-                printf("Atributo: Populacao\n");
-                printf("Valores de cada: carta 1: %lu, carta 2: %lu\n", populacao1, populacao2);
-                printf("Carta 2 foi a vencedora: %s\n", nomePais2);
-                
-            } else {                            //else caso for empate
-                printf("\n\nPaises: %s e %s\n", nomePais1, nomePais2);
-                printf("Atributo: Populacao\n");
-                printf("Valores de cada: carta 1: %lu, carta 2: %lu\n", populacao1, populacao2);
-                printf("Empate!\n");
-            }
-            break;                                          // parada do case 1
+        case 1: //caso escolha a opcao 1 - comparar Populacao entre cartas 1 e 2
+            resultado1 = populacao1 > populacao2 ? 1 : 0; //comparacao entre cartas
+            strcpy(nomeAtributo1, "Populacao");
+            soma11 = populacao1; //armazenando valores para soma de cada carta de seus respectivos atributos
+            soma2_1 = populacao2; //armazenando valores para soma de cada carta de seus respectivos atributos
+            valorCarta1_1 = populacao1; //armazenando valores da carta 1 para somar posteriormente
+            valorCarta2_1 = populacao2; //armazenando valores da carta 2 para somar posteriormente
+            break;
+            
+        case 2: //caso escolha a opcao 2 - comparar Area entre cartas 1 e 2
+            resultado1 = area1 > area2 ? 1 : 0; //comparacao entre cartas
+            strcpy(nomeAtributo1, "Area"); // variavel recebe o nome do atributo comparado
+            soma11 = area1; //armazenando valores para soma de cada carta de seus respectivos atributos
+            soma2_1 = area2;//armazenando valores para soma de cada carta de seus respectivos atributos
+            valorCarta1_1 = area1; //armazenando valores da carta 1 para somar posteriormente
+            valorCarta2_1 = area2; //armazenando valores da carta 2 para somar posteriormente
+            break;
+            
+        case 3: //caso escolha a opcao 3 - comparar PIB entre cartas 1 e 2
+            resultado1 = pibBilhoes1 > pibBilhoes2 ? 1 : 0; //comparacao entre cartas
+            strcpy(nomeAtributo1, "PIB"); // variavel recebe o nome do atributo comparado
+            soma11 = pibBilhoes1; //armazenando valores para soma de cada carta de seus respectivos atributos
+            soma2_1 = pibBilhoes2; //armazenando valores para soma de cada carta de seus respectivos atributos
+            valorCarta1_1 = pibBilhoes1; //armazenando valores da carta 1 para somar posteriormente
+            valorCarta2_1 = pibBilhoes2; //armazenando valores da carta 2 para somar posteriormente
+            break;
         
-        case 2:                                             //caso a entrada do usuario for 2
-            if (area1 > area2){                             //comparacao do attributo area entre cartas 1 e 2
-                
-                printf("\n\nPaises: %s e %s\n", nomePais1, nomePais2);
-                printf("Atributo: Area\n");
-                printf("Valores de cada: carta 1: %f, carta 2: %f\n", area1, area2);
-                printf("Carta 1 foi a vencedora: %s\n", nomePais1);
-                
-            } else if (populacao1 < populacao2){            //comparacao entre cartas 1 e 2 caso a carta 2 ganhe
-                
-                printf("\n\nPaises: %s e %s\n", nomePais1, nomePais2);
-                printf("Atributo: Area\n");
-                printf("Valores de cada: carta 1: %f, carta 2: %f\n", area1, area2);
-                printf("Carta 2 foi a vencedora: %s\n", nomePais2);
-                
-            } else {                                        //else caso for empate
-                printf("\n\nPaises: %s e %s\n", nomePais1, nomePais2);
-                printf("Atributo: Area\n");
-                printf("Valores de cada: carta 1: %f, carta 2: %f\n", area1, area2);
-                printf("Empate!\n");
-            }
-            break;                                          //parada do case 2
+        case 4: //caso escolha a opcao 4 - comparar Numero de pontos turisticos entre cartas 1 e 2
+            resultado1 = NumeroPontoTuristico1 > NumeroPontoTuristico2 ? 1 : 0; //comparacao entre cartas
+            strcpy(nomeAtributo1, "Numero de Pontos Turisticos"); // variavel recebe o nome do atributo comparado
+            soma11 = NumeroPontoTuristico1;//armazenando valores para soma de cada carta de seus respectivos atributos
+            soma2_1 = NumeroPontoTuristico2; //armazenando valores para soma de cada carta de seus respectivos atributos
+            valorCarta1_1 = NumeroPontoTuristico1; //armazenando valores da carta 1 para somar posteriormente
+            valorCarta2_1 = NumeroPontoTuristico2; //armazenando valores da carta 2 para somar posteriormente
+            break;
             
-        case 3:                                             //caso a entrada do usuario for 3
-            if (pibBilhoes1 > pibBilhoes2){                 //comparacao atributo pib
-                
-                printf("\n\nPaises: %s e %s\n", nomePais1, nomePais2);
-                printf("Atributo: PIB\n");
-                printf("Valores de cada: carta 1: %f, carta 2: %f\n", pibBilhoes1, pibBilhoes2);
-                printf("Carta 1 foi a vencedora: %s\n", nomePais1);
-                
-            } else if (pibBilhoes1 < pibBilhoes2){           //comparacao entre cartas 1 e 2 caso a carta 2 ganhe
-                
-                printf("\n\nPaises: %s e %s\n", nomePais1, nomePais2);
-                printf("Atributo: PIB\n");
-                printf("Valores de cada: carta 1: %f, carta 2: %f\n", pibBilhoes1, pibBilhoes2);
-                printf("Carta 2 foi a vencedora: %s\n", nomePais2);
-                
-            } else {                                        //else caso for empate
-                printf("\n\nPaises: %s e %s\n", nomePais1, nomePais2);
-                printf("Atributo: PIB\n");
-                printf("Valores de cada: carta 1: %f, carta 2: %f\n", pibBilhoes1, pibBilhoes2);
-                printf("Empate!\n");
-            }
-            break;                                          //parada do case 3
+        case 5: //caso escolha a opcao 5 - comparar densidade populacional entre cartas 1 e 2
+            resultado1 = densidadePopulacional1 < densidadePopulacional2 ? 1 : 0; //comparacao entre cartas
+            strcpy(nomeAtributo1, "Densidade Populacional"); // variavel recebe o nome do atributo comparado
+            soma11 = densidadePopulacional1;//armazenando valores para soma de cada carta de seus respectivos atributos
+            soma2_1 = densidadePopulacional2; //armazenando valores para soma de cada carta de seus respectivos atributos
+            valorCarta1_1 = densidadePopulacional1; //armazenando valores da carta 1 para somar posteriormente
+            valorCarta2_1 = densidadePopulacional2; //armazenando valores da carta 2 para somar posteriormente
+            break;
             
-        case 4:                                             //caso a entrada do usuario for 4
-            if (NumeroPontoTuristico1 > NumeroPontoTuristico2){ //comparacao entre cartas 1 e 2 atributo numero de pontos turisticos
-                
-                printf("\n\nPaises: %s e %s\n", nomePais1, nomePais2);
-                printf("Atributo: Numero de Pontos Turisticos\n");
-                printf("Valores de cada: carta 1: %d, carta 2: %d\n", NumeroPontoTuristico1, NumeroPontoTuristico2);
-                printf("Carta 1 foi a vencedora: %s\n", nomePais1);
-                
-            } else if (NumeroPontoTuristico1 < NumeroPontoTuristico2){  //comparacao entre cartas 1 e 2 caso a carta 2 ganhe
-                
-                printf("\n\nPaises: %s e %s\n", nomePais1, nomePais2);
-                printf("Atributo: Numero de Pontos Turisticos\n");
-                printf("Valores de cada: carta 1: %d, carta 2: %d\n", NumeroPontoTuristico1, NumeroPontoTuristico2);
-                printf("Carta 2 foi a vencedora: %s\n", nomePais2);
-                
-            } else {                                                    //else caso a comparacao saia empate
-                printf("\n\nPaises: %s e %s\n", nomePais1, nomePais2);
-                printf("Atributo: Numero de Pontos Turisticos\n");
-                printf("Valores de cada: carta 1: %d, carta 2: %d\n", NumeroPontoTuristico1, NumeroPontoTuristico2);
-                printf("Empate!\n");
-            }
-            break;                                                      //parada do case 4
-        case 5:                                                         //caso a entrada do usuario seja 5
-            if (densidadePopulacional1 < densidadePopulacional2){       //comparacao de atributos Densidade Populacional entre cartas 1 e 2 
-                
-                printf("\n\nPaises: %s e %s\n", nomePais1, nomePais2);
-                printf("Atributo: Densidade Populacional\n");
-                printf("Valores de cada: carta 1: %f, carta 2: %f\n", densidadePopulacional1, densidadePopulacional2);
-                printf("Carta 1 foi a vencedora: %s\n", nomePais1);
-                
-            } else if (densidadePopulacional1 > densidadePopulacional2){    //comparacao caso a carta 2 ganhe
-                
-                printf("\n\nPaises: %s e %s\n", nomePais1, nomePais2);
-                printf("Atributo: Densidade Populacional\n");
-                printf("Valores de cada: carta 1: %f, carta 2: %f\n", densidadePopulacional1, densidadePopulacional2);
-                printf("Carta 2 foi a vencedora: %s\n", nomePais2);
-                
-            } else {
-                printf("\n\nPaises: %s e %s\n", nomePais1, nomePais2);  //else caso o resultado saia empate
-                printf("Atributo: Densidade Populacional\n");
-                printf("Valores de cada: carta 1: %f, carta 2: %f\n", densidadePopulacional1, densidadePopulacional2);
-                printf("Empate!\n");
-            }
-            break;                                                      //parada do case 5
-            
-        default :                                                       //funcao padrao caso nenhuma das escolhas acima sejam feitas
-    
-            printf("Selecione uma opção válida!");
-        
+        default:
+            printf("Escolha uma opcao valida\n");
             break;
     }
+    
+    
+    
+    printf("\n\nEscolha o segundo atributo:\n");
+    printf("Atencao: Voce deve escolher um atributo diferente do primeiro. \n");
+    printf("1. Populacao\n");
+    printf("2. Area\n");
+    printf("3. PIB\n");
+    printf("4. Numero de Pontos Turísticos\n");
+    printf("5. Densidade Populacional\n");
 
+    printf("Escolha a comparacao: ");
+    scanf("%d", &atributo2);
+    
+    if (atributo1 == atributo2){
+        printf("Atributo já escolhido! Faca outra escolha:");
+    } else {
+        
+        switch(atributo2){
+            
+        case 1: //caso escolha a opcao 1 - comparar Populacao entre cartas 1 e 2
+            resultado2 = populacao1 > populacao2 ? 1 : 0; //comparacao entre cartas
+            strcpy(nomeAtributo2, "Populacao"); // variavel recebe o nome do atributo comparado
+            soma21 = populacao1;//armazenando valores para soma de cada carta de seus respectivos atributos
+            soma2_2 = populacao2; //armazenando valores para soma de cada carta de seus respectivos atributos
+            valorCarta1_2 = populacao1; //armazenando valores da carta 1 para somar posteriormente
+            valorCarta2_2 = populacao2; //armazenando valores da carta 2 para somar posteriormente
+            break;
+                
+        case 2: //caso escolha a opcao 2 - comparar Area entre cartas 1 e 2
+            resultado2 = area1 > area2 ? 1 : 0; //comparacao entre cartas
+            strcpy(nomeAtributo2, "Area"); // variavel recebe o nome do atributo comparado
+            soma21 = area1;//armazenando valores para soma de cada carta de seus respectivos atributos
+            soma2_2 = area2;  //armazenando valores para soma de cada carta de seus respectivos atributos
+            valorCarta1_2 = area1; //armazenando valores da carta 1 para somar posteriormente
+            valorCarta2_2 = area2; //armazenando valores da carta 2 para somar posteriormente
+            break;
+            
+        case 3: //caso escolha a opcao 3 - comparar PIB entre cartas 1 e 2
+            resultado2 = pibBilhoes1 > pibBilhoes2 ? 1 : 0; //comparacao entre cartas
+            strcpy(nomeAtributo2, "PIB"); // variavel recebe o nome do atributo comparado
+            soma21 = pibBilhoes1;//armazenando valores para soma de cada carta de seus respectivos atributos
+            soma2_2 = pibBilhoes2;  //armazenando valores para soma de cada carta de seus respectivos atributos
+            valorCarta1_2 = area1; //armazenando valores da carta 1 para somar posteriormente
+            valorCarta2_2 = area2; //armazenando valores da carta 2 para somar posteriormente
+            break;
+                
+        case 4: //caso escolha a opcao 4 - comparar Numero de pontos turisticos entre cartas 1 e 2
+            resultado2 = NumeroPontoTuristico1 > NumeroPontoTuristico2 ? 1 : 0; //comparacao entre cartas
+            strcpy(nomeAtributo2, "Numero de Pontos Turisticos"); // variavel recebe o nome do atributo comparado
+            soma21 = NumeroPontoTuristico1;//armazenando valores para soma de cada carta de seus respectivos atributos
+            soma2_2 = NumeroPontoTuristico2; //armazenando valores para soma de cada carta de seus respectivos atributos
+            valorCarta1_2 = NumeroPontoTuristico1; //armazenando valores da carta 1 para somar posteriormente
+            valorCarta2_2 = NumeroPontoTuristico2; //armazenando valores da carta 1 para somar posteriormente
+            break;
+            
+        case 5: //caso escolha a opcao 5 - comparar densidade populacional entre cartas 1 e 2
+            resultado2 = densidadePopulacional1 < densidadePopulacional2 ? 1 : 0; //comparacao entre cartas
+            strcpy(nomeAtributo2, "Densidade Populacional"); // variavel recebe o nome do atributo comparado
+            soma21 = densidadePopulacional1;//armazenando valores para soma de cada carta de seus respectivos atributos
+            soma2_2 += densidadePopulacional2; //armazenando valores para soma de cada carta de seus respectivos atributos        
+            valorCarta1_2 = densidadePopulacional1; //armazenando valores da carta 1 para somar posteriormente
+            valorCarta2_2 = densidadePopulacional2; //armazenando valores da carta 1 para somar posteriormente
+            break;
+                
+        default:
+            printf("Escolha uma opcao valida\n");
+            break;
+                
+        }
+        
+         if (resultado1 && resultado2){ //comparando a comparacao das cartas se valores sao veerdadeiros se sim executa o codigo abaixo
+             
+            printf("\n\nPais carta 1: %s, Pais carta 2: %s\n", nomePais1, nomePais2); //imprime nome dos Paises
+            printf("Atributos Escolhidos: %s e %s\n", nomeAtributo1,nomeAtributo2); //imprime atributos escolhidos
+            printf("Valores carta 1: %.2f e %.2f - Valores carta 2: %.2f e %.2f\n", valorCarta1_1, valorCarta1_2, valorCarta2_1, valorCarta2_2);//imprime valores de cada atributo de cada carta 
+            printf("Soma dos atributos carta 1: %.2f - Soma dos atributos carta 2: %.2f\n", (soma11 + soma21), (soma2_1 + soma2_2));//soma dos valores de cada atributo de cada carta
+            printf("Carta 1 venceu o jogo!\n");//imprimindoo carta vencedora
+            
+        } else if (resultado1 != resultado2){ //se resultado das comparacoes entre cartas for diferente resulta em empate
+        
+            printf("Empatou!\n");
+            
+        } else { //comprando a comparacao das cartas se valores forem falsos jogador perde e executa codigo abaixo
+            
+            printf("\n\nPais carta 1: %s, Pais carta 2 %s\n", nomePais1, nomePais2);//imprimindo nome dos Paises 
+            printf("Atributos %s e %s\n", nomeAtributo1,nomeAtributo2); //imprime atributos escolhidos
+            printf("Valores carta 1: %.2f e %.2f - Valores carta 2: %.2f e %.2f\n", valorCarta1_1, valorCarta1_2, valorCarta2_1, valorCarta2_2);//imprime valores de cada atributo de cada carta 
+            printf("Soma dos atributos carta 1: %.2f - Soma dos atributos carta 2: %.2f\n", (soma11 + soma21), (soma2_1 + soma2_2));//soma dos valores de cada atributo de cada carta
+            printf("Carta 2 venceu o jogo!\n");//imprime mensagem que jogador perdeu
+            
+        }
+    }
+    
     //fim do programa
     return 0;
     
